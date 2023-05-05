@@ -1,0 +1,70 @@
+[gd_scene load_steps=9 format=3 uid="uid://qjbwnks8xx56"]
+
+[ext_resource type="PhysicsMaterial" uid="uid://coxxrjwu5rkms" path="res://ball_physics.tres" id="1_m10s8"]
+[ext_resource type="Texture2D" uid="uid://cyj5d3o4evvhq" path="res://ball.png" id="2_labe8"]
+[ext_resource type="Script" path="res://bat.gd" id="2_sdw62"]
+[ext_resource type="Texture2D" uid="uid://b6wjqceofikdb" path="res://bat.png" id="2_stvmf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jd1qa"]
+radius = 4.12311
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_887vw"]
+size = Vector2(40, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s8m2b"]
+size = Vector2(340, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lwbpn"]
+size = Vector2(20, 200)
+
+[node name="main" type="Node2D"]
+
+[node name="ball" type="RigidBody2D" parent="."]
+physics_material_override = ExtResource("1_m10s8")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="ball"]
+texture_filter = 1
+position = Vector2(251, 109)
+texture = ExtResource("2_labe8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ball"]
+position = Vector2(251, 109)
+shape = SubResource("CircleShape2D_jd1qa")
+
+[node name="bat" type="StaticBody2D" parent="."]
+position = Vector2(300, 180)
+script = ExtResource("2_sdw62")
+
+[node name="Sprite2D" type="Sprite2D" parent="bat"]
+texture_filter = 1
+texture = ExtResource("2_stvmf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bat"]
+shape = SubResource("RectangleShape2D_887vw")
+
+[node name="wall_top" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wall_top"]
+position = Vector2(160, 210)
+shape = SubResource("RectangleShape2D_s8m2b")
+
+[node name="wall_bottom" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wall_bottom"]
+position = Vector2(160, -10)
+shape = SubResource("RectangleShape2D_s8m2b")
+
+[node name="wall_left" type="StaticBody2D" parent="."]
+position = Vector2(-2, 8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wall_left"]
+position = Vector2(-8, 92)
+shape = SubResource("RectangleShape2D_lwbpn")
+
+[node name="wall_right" type="StaticBody2D" parent="."]
+position = Vector2(-2, 8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wall_right"]
+position = Vector2(332, 92)
+shape = SubResource("RectangleShape2D_lwbpn")
